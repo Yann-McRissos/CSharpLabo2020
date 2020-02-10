@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Labo_2020
 {
-    public class Class1
-    {
-    }
+	public class CartoObj
+	{
+		
+	}
 }
