@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Labo_2020
 {
-    public class Coordonnees
+    public class Coordonnees : CartoObj
     {
         #region VARIABLES MEMBRES
         private double _latitude;
@@ -38,13 +38,19 @@ namespace Labo_2020
         {
             // le constructeur par défaut est censé utiliser le constructeur d'initialisation selon l'énoncé (p5)   
         }
-        #endregion
+		#endregion
 
-        #region METHODES
-        public override string ToString()
+		#region METHODES
+		public override void Draw()
+		{
+			Console.WriteLine("Id: " + Id);
+		}
+
+		public override string ToString()
         {
+			Draw();
 			return "(" + Latitude + ", " + Longitude + ")";
         }
-        #endregion
-    }
+		#endregion
+	}
 }

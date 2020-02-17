@@ -9,16 +9,34 @@ namespace Labo_2020
 {
 	public abstract class CartoObj
 	{
-		private static int _id;    // must be automatically generated using a "static" object instance counter
-		
+		private int _id;    // must be automatically generated using a "static" object instance counter
+		private static int cpt = 0; 
+
+		#region PROPRIETES
+		public int Id
+		{
+			get { return _id; }
+			set { _id = value; }
+		}
+		#endregion
+
 		#region CONSTRUCTEURS
 		public CartoObj()
 		{
-			Interlocked.Increment(ref _id);
+			Id = ++cpt;
 		}
 		#endregion
 
 		#region METHODES
+		public override string ToString()
+		{
+			return "Id: " + Id;
+		}
+
+		public virtual void Draw()
+		{
+			Console.WriteLine(ToString());
+		}
 		#endregion
 	}
 }

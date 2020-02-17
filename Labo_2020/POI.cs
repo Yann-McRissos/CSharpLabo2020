@@ -35,11 +35,17 @@ namespace Labo_2020
 		#endregion
 
 		#region METHODES
+		public override void Draw()
+		{
+			Console.WriteLine("Id: " + Id);
+		}
+
 		public override string ToString()
 		{
 			string formattedlat = string.Format("{0:N3}", this.Latitude);
 			string formattedlon = string.Format("{0:N3}", this.Longitude);
 
+			Draw();
 			return Description + " (" + formattedlat + ", " + formattedlon + ")";
 		}
 		#endregion

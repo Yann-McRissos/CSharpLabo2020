@@ -15,15 +15,15 @@ namespace console_app
             Coordonnees c = new Coordonnees(150, 120);
 			Coordonnees cDef = new Coordonnees();
 
-			Console.WriteLine("c: " + c.ToString());
-			Console.WriteLine("cDef: " + cDef.ToString());
+			Console.WriteLine(c.ToString());
+			Console.WriteLine(cDef.ToString());
 
 			// test classe POI
 			POI poi = new POI(125, 38, "Test");
 			POI poiDef = new POI();
 
-			Console.WriteLine("poi: " + poi);
-			Console.WriteLine("poiDef: " + poiDef);
+			Console.WriteLine(poi.ToString());
+			Console.WriteLine(poiDef.ToString());
 		}
     }
 }
