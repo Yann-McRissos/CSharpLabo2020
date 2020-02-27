@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Labo_2020;
+using System.Windows.Media;
 
 namespace console_app
-{// le constructeur par défaut est censé utiliser le constructeur d'initialisation selon l'énoncé (p5)
+{
     class Program
     {
         static void Main(string[] args)
@@ -24,6 +25,25 @@ namespace console_app
 
 			Console.WriteLine(poi.ToString());
 			Console.WriteLine(poiDef.ToString());
+            
+            List<Coordonnees> maliste = new List<Coordonnees>();
+			maliste.Add(c);
+			maliste.Add(cDef);
+			
+            Polyline pl = new Polyline(maliste, Color.FromRgb(255, 0, 0), 17);
+            Polyline plDef = new Polyline();
+
+			Console.WriteLine(pl.ToString());
+			Console.WriteLine(plDef.ToString());
+
+			pl.Draw();
+			plDef.Draw();
+
+			Polygon pg = new Polygon(maliste, Colors.Red, Colors.Blue, 0);
+			Polygon pgDef = new Polygon();
+
+			pg.Draw();
+			pgDef.Draw();
 		}
     }
 }

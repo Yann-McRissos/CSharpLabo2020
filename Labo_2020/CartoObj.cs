@@ -9,8 +9,8 @@ namespace Labo_2020
 {
 	public abstract class CartoObj
 	{
-		private int _id;    // must be automatically generated using a "static" object instance counter
-		private static int cpt = 0; 
+		private int _id;            // must be automatically generated using a "static" object instance counter
+		private static int _cpt = 0; // static object instance counter, is updated everytime the constructor is called
 
 		#region PROPRIETES
 		public int Id
@@ -23,15 +23,15 @@ namespace Labo_2020
 		#region CONSTRUCTEURS
 		public CartoObj()
 		{
-			Id = ++cpt;
+			Id = ++_cpt;
 		}
 		#endregion
 
 		#region METHODES
 		public override string ToString()
 		{
-			return "Id: " + Id;
-		}
+			return string.Format("{0:00}", Id);
+        }
 
 		public virtual void Draw()
 		{

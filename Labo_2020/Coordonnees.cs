@@ -36,20 +36,21 @@ namespace Labo_2020
 
         public Coordonnees() : this(0, 0)
         {
-            // le constructeur par défaut est censé utiliser le constructeur d'initialisation selon l'énoncé (p5)   
+            // le constructeur par défaut est censé utiliser 
+            // le constructeur d'initialisation selon l'énoncé (p5)
+            // d'ou le this(0, 0)
         }
 		#endregion
 
 		#region METHODES
 		public override void Draw()
 		{
-			Console.WriteLine("Id: " + Id);
-		}
+			Console.WriteLine(string.Format("{0:00}", Id));
+        }
 
 		public override string ToString()
         {
-			Draw();
-			return "(" + Latitude + ", " + Longitude + ")";
+			return string.Format("Id: {0:00}", Id) + " (" + Latitude + ", " + Longitude + ")";
         }
 		#endregion
 	}

@@ -30,23 +30,22 @@ namespace Labo_2020
 		{
 			Latitude = 50.6109846;
 			Longitude = 5.5098916;
-			Description = "Haute Ecole de la Province de Liège";
+			Description = "HEPL";
 		}
 		#endregion
 
 		#region METHODES
 		public override void Draw()
 		{
-			Console.WriteLine("Id: " + Id);
-		}
+            Console.WriteLine(string.Format("{0:00}", Id));
+        }
 
 		public override string ToString()
 		{
 			string formattedlat = string.Format("{0:N3}", this.Latitude);
 			string formattedlon = string.Format("{0:N3}", this.Longitude);
 
-			Draw();
-			return Description + " (" + formattedlat + ", " + formattedlon + ")";
+			return string.Format("Id: {0:00}", Id) + " " + Description + " (" + formattedlat + ", " + formattedlon + ")";
 		}
 		#endregion
 	}
