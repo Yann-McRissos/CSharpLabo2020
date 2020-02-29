@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Labo_2020
 {
-	public class POI : Coordonnees
+	public class POI : Coordonnees, IIsPointClose
 	{
 		private string _description;
 
@@ -46,6 +46,13 @@ namespace Labo_2020
 			string formattedlon = string.Format("{0:N3}", this.Longitude);
 
 			return string.Format("Id: {0:00}", Id) + " " + Description + " (" + formattedlat + ", " + formattedlon + ")";
+		}
+
+		public bool IsPointClose(double latitude, double longitude, int precision)
+		{
+			// comment pythagore nous aide si on a que 2 points ? 
+			// (celui passé en paramètre et le POI)
+			return false;
 		}
 		#endregion
 	}

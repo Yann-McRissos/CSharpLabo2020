@@ -8,7 +8,7 @@ using System.Windows.Media;
 
 namespace Labo_2020
 {
-	public class Polyline : CartoObj
+	public class Polyline : CartoObj, IIsPointClose
 	{
         #region VARIABLES MEMBRES
         private List<Coordonnees> _listCoord = new List<Coordonnees>();
@@ -74,6 +74,22 @@ namespace Labo_2020
 			Console.WriteLine("\tCouleur: " + Couleur);
 			Console.WriteLine("\tEpaisseur: " + Epaisseur+"\n");
         }
-        #endregion
-    }
+
+		public bool IsPointClose(double latitude, double longitude, int precision)
+		{
+			Coordonnees temp = new Coordonnees(latitude, longitude);
+
+			foreach (Coordonnees c in IECoord)
+			{
+				double totalLat = c.Latitude - temp.Latitude;
+				double totalLon = c.Longitude - temp.Longitude;
+				if (Math.Abs(totalLat) <= precision && Math.Abs(totalLon) <= precision)
+					return true;
+				else
+					return false;
+			}
+			return false;
+		}
+		#endregion
+	}
 }
