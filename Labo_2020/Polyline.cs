@@ -8,7 +8,7 @@ using System.Windows.Media;
 
 namespace Labo_2020
 {
-	public class Polyline : CartoObj, IIsPointClose
+	public class Polyline : CartoObj, IIsPointClose, IPointy
 	{
         #region VARIABLES MEMBRES
         private List<Coordonnees> _listCoord = new List<Coordonnees>();
@@ -38,10 +38,10 @@ namespace Labo_2020
             get { return _epaisseur; }
             set { _epaisseur = value; }
         }
-        #endregion
+		#endregion
 
-        #region CONSTRUCTEURS
-        public Polyline()
+		#region CONSTRUCTEURS
+		public Polyline()
         {
             Couleur = Colors.White;
             Epaisseur = 10;
@@ -89,6 +89,28 @@ namespace Labo_2020
 					return false;
 			}
 			return false;
+		}
+
+		public byte NbPoints
+		{
+			get
+			{
+				byte b=0;
+				foreach (Coordonnees point in _listCoord)
+				{
+					foreach (Coordonnees cmp in IECoord)
+					{
+						if (point.Id == cmp.Id)
+						{
+							exists = true;
+							break;
+						}
+					}
+					if (exists == false)
+						b++;
+				}
+				return b;
+			}
 		}
 		#endregion
 	}

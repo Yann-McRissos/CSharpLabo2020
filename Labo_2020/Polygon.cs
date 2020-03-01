@@ -8,7 +8,7 @@ using System.Windows.Media;
 
 namespace Labo_2020
 {
-	public class Polygon : CartoObj
+	public class Polygon : CartoObj, IPointy
 	{
 		#region VARIABLES MEMBRES
 		private List<Coordonnees> _listCoord = new List<Coordonnees>();
@@ -83,6 +83,29 @@ namespace Labo_2020
 			Console.WriteLine("\tRemplissage: "+Remplissage);
 			Console.WriteLine("\tContour: " + Contour);
 			Console.WriteLine("\tOpacite:" + Opacite+"\n");
+		}
+
+		public byte NbPoints
+		{
+			get
+			{
+				byte b = 0;
+				bool exists = false;
+				foreach (Coordonnees point in IECoord)
+				{
+					foreach (Coordonnees cmp in IECoord)
+					{
+						if (point.Id == cmp.Id)
+						{
+							exists = true;
+							break;
+						}
+					}
+					if (exists == false)
+						b++;
+				}
+				return b;
+			}
 		}
 		#endregion
 	}

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Labo_2020
 {
-	interface IPointy
+	public interface IPointy
 	{
+		byte NbPoints { get; }
 	}
 }

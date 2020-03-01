@@ -9,8 +9,8 @@ namespace Labo_2020
     public class Coordonnees : CartoObj
     {
         #region VARIABLES MEMBRES
-        private double _latitude;
-        private double _longitude;
+        private double _latitude;	// Y
+        private double _longitude;	// X
         #endregion
 
         #region PROPRIETES

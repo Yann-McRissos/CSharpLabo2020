@@ -9,8 +9,8 @@ namespace Labo_2020
 {
 	public abstract class CartoObj
 	{
-		private int _id;            // must be automatically generated using a "static" object instance counter
-		private static int _cpt = 0; // static object instance counter, is updated everytime the constructor is called
+		private int _id;				// must be automatically generated using a "static" object instance counter
+		private static int _cpt = 0;	// static object instance counter, is updated everytime the constructor is called
 
 		#region PROPRIETES
 		public int Id
