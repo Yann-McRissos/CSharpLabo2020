@@ -60,10 +60,11 @@ namespace MyCartographyObjects
 			if(ListeCoord != null)
 			{
 				POI temp = new POI(latitude, longitude, "Comparer");
-				double xMin = 0, xMax = 0, yMin = 0, yMax = 0;
+				double xMin = 99, xMax = 0, yMin = 99, yMax = 0;
 
 				foreach (Coordonnees c in ListeCoord)
 				{
+					xMin = 99; xMax = 0; yMin = 99; yMax = 0;
 					if (c.Longitude > xMax)
 						xMax = c.Longitude;
 					if (c.Longitude < xMin)

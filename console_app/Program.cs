@@ -156,7 +156,7 @@ namespace console_app
 						Console.WriteLine("Comparaison à un Polyline de référence:");
 						listePL.Add(pl2);
 						foreach (Polyline polyline in listePL.FindAll(cmp => cmp.Equals(pl1)))
-							Console.WriteLine(pl.ToString());
+							Console.WriteLine(polyline.ToString());
 						listePL.Remove(pl2);
 						Console.ReadKey();
 						Console.Clear();
@@ -164,8 +164,8 @@ namespace console_app
 						Console.WriteLine("Polylines proches d'un point passé en paramètre:");
 						foreach (Polyline polyline in listePL)
 						{
-							if (pl.IsPointClose(5, 5, 1))
-								Console.WriteLine(pl.ToString());
+							if (polyline.IsPointClose(5, 5, 2))
+								Console.WriteLine(polyline.ToString());
 						}
 						Console.ReadKey();
 						Console.Clear();

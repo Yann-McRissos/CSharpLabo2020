@@ -76,10 +76,11 @@ namespace MyCartographyObjects
 			if(ListeCoord != null)
 			{
 				// si notre point est compris entre les points min et max, il se trouve dans la bounding box
-				double xMin = 0, xMax = 0, yMin = 0, yMax = 0;
+				double xMin = 99, xMax = 0, yMin = 99, yMax = 0;
 
 				foreach (Coordonnees c in ListeCoord)
 				{
+					xMin = 99; xMax = 0; yMin = 99; yMax = 0;
 					if (c.Longitude > xMax)
 						xMax = c.Longitude;
 					if (c.Longitude < xMin)
