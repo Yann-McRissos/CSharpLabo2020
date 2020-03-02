@@ -8,6 +8,6 @@ namespace Labo_2020
 {
 	public interface IIsPointClose
 	{
-		bool IsPointClose(double latitude, double longitude, int precision);
+		bool IsPointClose(double latitude, double longitude, double precision);
 	}
 }

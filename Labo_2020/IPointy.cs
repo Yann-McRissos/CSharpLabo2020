@@ -8,6 +8,6 @@ namespace Labo_2020
 {
 	public interface IPointy
 	{
-		byte NbPoints { get; }
+		int NbPoints { get; }
 	}
 }

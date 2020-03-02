@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Labo_2020
 {
-	public abstract class CartoObj
+	public abstract class CartoObj : IIsPointClose
 	{
 		private int _id;				// must be automatically generated using a "static" object instance counter
 		private static int _cpt = 0;	// static object instance counter, is updated everytime the constructor is called
@@ -36,6 +36,11 @@ namespace Labo_2020
 		public virtual void Draw()
 		{
 			Console.WriteLine(ToString());
+		}
+
+		public virtual bool IsPointClose(double latitude, double longitude, double precision)
+		{
+			return false;
 		}
 		#endregion
 	}

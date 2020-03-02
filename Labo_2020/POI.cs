@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MyMathLib;
 
 namespace Labo_2020
 {
@@ -26,11 +27,8 @@ namespace Labo_2020
 			Description = desc;
 		}
 
-		public POI()
+		public POI() : this(50.6109846, 5.5098916, "HEPL")
 		{
-			Latitude = 50.6109846;
-			Longitude = 5.5098916;
-			Description = "HEPL";
 		}
 		#endregion
 
@@ -48,11 +46,9 @@ namespace Labo_2020
 			return string.Format("Id: {0:00}", Id) + " " + Description + " (" + formattedlat + ", " + formattedlon + ")";
 		}
 
-		public bool IsPointClose(double latitude, double longitude, int precision)
+		public override bool IsPointClose(double latitude, double longitude, double precision)
 		{
-			// comment pythagore nous aide si on a que 2 points ? 
-			// (celui passé en paramètre et le POI)
-			return false;
+			return (MathUtil.Distance(Longitude, Latitude, longitude, latitude) <= precision);
 		}
 		#endregion
 	}

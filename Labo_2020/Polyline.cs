@@ -5,54 +5,37 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using MyMathLib;
 
 namespace Labo_2020
 {
-	public class Polyline : CartoObj, IIsPointClose, IPointy
+	public class Polyline : CartoObj, IIsPointClose, IPointy, IComparable<Polyline>
 	{
-        #region VARIABLES MEMBRES
-        private List<Coordonnees> _listCoord = new List<Coordonnees>();
-        private Color _couleur;
-        private int _epaisseur;
+		#region VARIABLES MEMBRES
+		private List<Coordonnees> _listCoord;
+        private Color Couleur { get; set; }
+        private int Epaisseur { get; set; }
         #endregion
 
         #region PROPRIETES
-        public void AddCoord(Coordonnees cd)
-        {
-            _listCoord.Add(cd);
-        }
-
-        public IEnumerable<Coordonnees> IECoord
-        {
-            get { return _listCoord; }
-        }
-
-        public Color Couleur
-        {
-            get { return _couleur; }
-            set { _couleur = value; }
-        }
-
-        public int Epaisseur
-        {
-            get { return _epaisseur; }
-            set { _epaisseur = value; }
-        }
+        public List<Coordonnees> ListeCoord
+		{
+			get { return _listCoord; }
+			set { _listCoord = value; }
+		}
 		#endregion
 
 		#region CONSTRUCTEURS
 		public Polyline()
         {
-            Couleur = Colors.White;
-            Epaisseur = 10;
+			new List<Coordonnees>();
+			Couleur = Colors.White;
+            Epaisseur = 0;
         }
 
-        public Polyline(List<Coordonnees> liste, Color cl, int ep)
+        public Polyline(List<Coordonnees> liste, Color cl, int ep) : base()
         {
-            foreach (Coordonnees cd in liste)
-            {
-                this.AddCoord(cd);
-            }
+			ListeCoord = liste;
             Couleur = cl;
             Epaisseur = ep;
         }
@@ -61,56 +44,72 @@ namespace Labo_2020
         #region METHODES
         public override string ToString()
         {
-            return string.Format("{0:00}", Id) + " " + IECoord.ToString() + " " + Couleur.ToString() + " " + Epaisseur;
+			if(ListeCoord == null)
+				return string.Format("Id Polyline: {0:00}", Id) + "\nC: " + Couleur + "\nE: " + Epaisseur + "\n";
+			else
+				return string.Format("Id Polyline: {0:00}\n", Id) + "(\n\t" + string.Join("\n\t", ListeCoord) + "\n)\nC: " + Couleur + "\nE: " + Epaisseur + "\n";
         }
 
         public override void Draw()
         {
-            Console.WriteLine(string.Format("Id: {0:00}", Id));
-			foreach (Coordonnees coord in _listCoord)
-			{
-				Console.WriteLine("\t" + coord);
-			}
-			Console.WriteLine("\tCouleur: " + Couleur);
-			Console.WriteLine("\tEpaisseur: " + Epaisseur+"\n");
+			Console.WriteLine(ToString());
         }
 
-		public bool IsPointClose(double latitude, double longitude, int precision)
+		public override bool IsPointClose(double latitude, double longitude, double precision)
 		{
-			Coordonnees temp = new Coordonnees(latitude, longitude);
+			POI temp = new POI(latitude, longitude, "Comparer");
+			double xMin = 0, xMax = 0, yMin = 0, yMax = 0;
 
-			foreach (Coordonnees c in IECoord)
+			foreach (Coordonnees c in ListeCoord)
 			{
-				double totalLat = c.Latitude - temp.Latitude;
-				double totalLon = c.Longitude - temp.Longitude;
-				if (Math.Abs(totalLat) <= precision && Math.Abs(totalLon) <= precision)
+				if (c.Longitude > xMax)
+					xMax = c.Longitude;
+				if (c.Longitude < xMin)
+					xMin = c.Longitude;
+				if (c.Latitude > yMax)
+					yMax = c.Latitude;
+				if (c.Latitude < yMin)
+					yMin = c.Latitude;
+
+				// si la distance qui sépare le point d’un des segments de celle-ci est inférieure à la précision
+				if (temp.IsPointClose(c.Latitude, c.Longitude, precision))
 					return true;
-				else
-					return false;
 			}
-			return false;
+
+			/* un point se trouve proche de la ligne si elle est proche d’un de ses points
+			 * si notre point est compris entre les points min et max, il est proche
+			 */
+			return (xMin <= longitude && longitude <= xMax) && (yMin <= latitude && latitude <= yMax);
 		}
 
-		public byte NbPoints
+		public int NbPoints
 		{
-			get
+			get { return ListeCoord.Count; }
+		}
+
+		public int CompareTo(Polyline other)
+		{
+			return Longueur().CompareTo(other.Longueur());
+		}
+
+		public double Longueur()
+		{
+			if(ListeCoord != null)
 			{
-				byte b=0;
-				foreach (Coordonnees point in _listCoord)
+				Coordonnees cPrev = null;
+				double segment = 0;
+
+				// La longueur d’une polyline se mesure par la somme des longueurs des segments qui la compose
+				// on calcule la distance entre 2 points et on additionne
+				foreach (Coordonnees c in ListeCoord)
 				{
-					foreach (Coordonnees cmp in IECoord)
-					{
-						if (point.Id == cmp.Id)
-						{
-							exists = true;
-							break;
-						}
-					}
-					if (exists == false)
-						b++;
+					if (cPrev != null)
+						segment += MathUtil.Distance(c.Longitude, c.Latitude, cPrev.Longitude, cPrev.Latitude);
+					cPrev = c;
 				}
-				return b;
+				return segment;
 			}
+			return 0;
 		}
 		#endregion
 	}
