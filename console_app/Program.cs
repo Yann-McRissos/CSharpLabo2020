@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Labo_2020;
+using MyCartographyObjects;
 using System.Windows.Media;
 
 namespace console_app
@@ -12,7 +12,6 @@ namespace console_app
     {
         static void Main(string[] args)
         {
-			/*
 			#region TESTS CLASSES
 			Console.WriteLine("Test Coordonnées: ");
             Coordonnees c = new Coordonnees(150, 120);
@@ -84,7 +83,7 @@ namespace console_app
 			Console.ReadKey();
 			Console.Clear();
 			#endregion
-			*/
+
 			#region LISTE GENERIQUE Polyline
 			Console.WriteLine("Liste générique d'objets Polyline: ");
 			List<Coordonnees> listCD2 = new List<Coordonnees>();
@@ -117,15 +116,44 @@ namespace console_app
 			Console.ReadKey();
 			Console.Clear();
 
-			Console.WriteLine("Après tri:");
+			Console.WriteLine("Tri par ordre croissant de longueur:");
 			listePL.Sort();
 			foreach (Polyline polyline in listePL)
 				polyline.Draw();
 			Console.ReadKey();
 			Console.Clear();
 
+			Console.WriteLine("Tri par ordre croissant de surface:");
+			MyPolylineBoundingBoxComparer polylineCmp = new MyPolylineBoundingBoxComparer();
+			listePL.Sort(polylineCmp);
+			foreach (Polyline polyline in listePL)
+				polyline.Draw();
+			Console.ReadKey();
+			Console.Clear();
 
+			Console.WriteLine("Comparaison à un Polyline de référence:");
+			listePL.Add(pl2);
+			foreach (Polyline polyline in listePL.FindAll(cmp => cmp.Equals(pl1)))
+				Console.WriteLine(pl.ToString());
+			listePL.Remove(pl2);
+			Console.ReadKey();
+			Console.Clear();
+
+			Console.WriteLine("Polylines proches d'un point passé en paramètre:");
+			foreach (Polyline polyline in listePL)
+			{
+				if (pl.IsPointClose(5, 5, 1))
+					Console.WriteLine(pl.ToString());
+			}
+			Console.ReadKey();
+			Console.Clear();
 			#endregion
+
+			Console.WriteLine("Mécanisme qui trie une liste de CartoObjs selon le nombre de coordonnées:");
+			MyNombreCoordonnesComparer ncComparer = new MyNombreCoordonnesComparer();
+			listeCO.Sort(ncComparer);
+			foreach (CartoObj co in listeCO)
+				Console.WriteLine(co.ToString() + "\n");
 		}
 	}
 }

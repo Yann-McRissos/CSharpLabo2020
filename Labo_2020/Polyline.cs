@@ -7,9 +7,9 @@ using System.Windows;
 using System.Windows.Media;
 using MyMathLib;
 
-namespace Labo_2020
+namespace MyCartographyObjects
 {
-	public class Polyline : CartoObj, IIsPointClose, IPointy, IComparable<Polyline>
+	public class Polyline : CartoObj, IIsPointClose, IPointy, IComparable<Polyline>, IEquatable<Polyline>
 	{
 		#region VARIABLES MEMBRES
 		private List<Coordonnees> _listCoord;
@@ -57,34 +57,43 @@ namespace Labo_2020
 
 		public override bool IsPointClose(double latitude, double longitude, double precision)
 		{
-			POI temp = new POI(latitude, longitude, "Comparer");
-			double xMin = 0, xMax = 0, yMin = 0, yMax = 0;
-
-			foreach (Coordonnees c in ListeCoord)
+			if(ListeCoord != null)
 			{
-				if (c.Longitude > xMax)
-					xMax = c.Longitude;
-				if (c.Longitude < xMin)
-					xMin = c.Longitude;
-				if (c.Latitude > yMax)
-					yMax = c.Latitude;
-				if (c.Latitude < yMin)
-					yMin = c.Latitude;
+				POI temp = new POI(latitude, longitude, "Comparer");
+				double xMin = 0, xMax = 0, yMin = 0, yMax = 0;
 
-				// si la distance qui sépare le point d’un des segments de celle-ci est inférieure à la précision
-				if (temp.IsPointClose(c.Latitude, c.Longitude, precision))
-					return true;
+				foreach (Coordonnees c in ListeCoord)
+				{
+					if (c.Longitude > xMax)
+						xMax = c.Longitude;
+					if (c.Longitude < xMin)
+						xMin = c.Longitude;
+					if (c.Latitude > yMax)
+						yMax = c.Latitude;
+					if (c.Latitude < yMin)
+						yMin = c.Latitude;
+
+					// si la distance qui sépare le point d’un des segments de celle-ci est inférieure à la précision
+					if (temp.IsPointClose(c.Latitude, c.Longitude, precision)) // returns true when it shouldn't
+						return true;
+				}
+
+				/* un point se trouve proche de la ligne si elle est proche d’un de ses points
+				 * si notre point est compris entre les points min et max, il est proche
+				 */
+				return (xMin <= longitude && longitude <= xMax) && (yMin <= latitude && latitude <= yMax);
 			}
-
-			/* un point se trouve proche de la ligne si elle est proche d’un de ses points
-			 * si notre point est compris entre les points min et max, il est proche
-			 */
-			return (xMin <= longitude && longitude <= xMax) && (yMin <= latitude && latitude <= yMax);
+			return false;
 		}
 
 		public int NbPoints
 		{
-			get { return ListeCoord.Count; }
+			get
+			{
+				if (ListeCoord != null)
+					return ListeCoord.Count;
+				return 0;
+			}
 		}
 
 		public int CompareTo(Polyline other)
@@ -110,6 +119,21 @@ namespace Labo_2020
 				return segment;
 			}
 			return 0;
+		}
+
+		public bool Equals(Polyline other)
+		{
+			// si les Id sont identiques, ce sont les mêmes points avec les mêmes coordonnées
+			if (this.Id == other.Id)
+				return true;
+
+			// On regarde s'il y a de l'écart entre les 2 points
+			double difference = 0;
+			difference = other.Longueur() - this.Longueur();
+			if (difference == 0)
+				return true;
+			else
+				return false;
 		}
 		#endregion
 	}

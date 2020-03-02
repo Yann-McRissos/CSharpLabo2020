@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 
 
-namespace Labo_2020
+namespace MyCartographyObjects
 {
 	public class Polygon : CartoObj, IIsPointClose, IPointy
 	{
@@ -73,27 +73,36 @@ namespace Labo_2020
 
 		public override bool IsPointClose(double latitude, double longitude, double precision)
 		{
-			// si notre point est compris entre les points min et max, il se trouve dans la bounding box
-			double xMin = 0, xMax = 0, yMin = 0, yMax = 0;
-
-			foreach (Coordonnees c in ListeCoord)
+			if(ListeCoord != null)
 			{
-				if (c.Longitude > xMax)
-					xMax = c.Longitude;
-				if (c.Longitude < xMin)
-					xMin = c.Longitude;
-				if (c.Latitude > yMax)
-					yMax = c.Latitude;
-				if (c.Latitude < yMin)
-					yMin = c.Latitude;
-			}
+				// si notre point est compris entre les points min et max, il se trouve dans la bounding box
+				double xMin = 0, xMax = 0, yMin = 0, yMax = 0;
 
-			return (xMin <= longitude && longitude <= xMax) && (yMin <= latitude && latitude <= yMax);
+				foreach (Coordonnees c in ListeCoord)
+				{
+					if (c.Longitude > xMax)
+						xMax = c.Longitude;
+					if (c.Longitude < xMin)
+						xMin = c.Longitude;
+					if (c.Latitude > yMax)
+						yMax = c.Latitude;
+					if (c.Latitude < yMin)
+						yMin = c.Latitude;
+				}
+
+				return (xMin <= longitude && longitude <= xMax) && (yMin <= latitude && latitude <= yMax);
+			}
+			return false;
 		}
 
 		public int NbPoints
 		{
-			get { return ListeCoord.Count; }
+			get
+			{
+				if (ListeCoord != null)
+					return ListeCoord.Count;
+				return 0;
+			}
 		}
 		#endregion
 	}

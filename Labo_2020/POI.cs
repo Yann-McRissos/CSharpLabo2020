@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MyMathLib;
 
-namespace Labo_2020
+namespace MyCartographyObjects
 {
 	public class POI : Coordonnees, IIsPointClose
 	{

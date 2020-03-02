@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Labo_2020
+namespace MyCartographyObjects
 {
 	public abstract class CartoObj : IIsPointClose
 	{
