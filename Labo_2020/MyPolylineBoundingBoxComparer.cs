@@ -12,7 +12,8 @@ namespace MyCartographyObjects
 		{
 			if(pl1.ListeCoord != null && pl2.ListeCoord != null)
 			{
-				double xMin = 0, xMax = 0, yMin = 0, yMax = 0, surfacePL1 = 0, surfacePL2 = 0;
+				double xMin = 99, xMax = 0, yMin = 99, yMax = 0;
+				double surfacePL1 = 0, surfacePL2 = 0;
 
 				foreach (Coordonnees c in pl1.ListeCoord)
 				{
@@ -27,6 +28,7 @@ namespace MyCartographyObjects
 				}
 				surfacePL1 = (xMax - xMin) * (yMax - yMin);
 
+				xMin = 99; xMax = 0; yMin = 99; yMax = 0;
 				foreach (Coordonnees c in pl2.ListeCoord)
 				{
 					if (c.Longitude > xMax)
