@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MyMathLib;
 
 namespace MyCartographyObjects
 {
-    public class Coordonnees : CartoObj
+	public class Coordonnees : CartoObj
     {
         #region VARIABLES MEMBRES
         private double _latitude;	// Y
@@ -43,15 +40,15 @@ namespace MyCartographyObjects
 		#endregion
 
 		#region METHODES
-		public override void Draw()
-		{
-			Console.WriteLine(string.Format("{0:00}", Id));
-        }
-
 		public override string ToString()
         {
 			return string.Format("Id: {0:00}", Id) + " (" + Latitude + ", " + Longitude + ")";
         }
+
+		public override bool IsPointClose(double latitude, double longitude, double precision)
+		{
+			return (MathUtil.Distance(Longitude, Latitude, longitude, latitude) <= precision);
+		}
 		#endregion
 	}
 }

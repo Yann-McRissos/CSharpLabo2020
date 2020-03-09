@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace MyCartographyObjects
 {
@@ -10,6 +6,7 @@ namespace MyCartographyObjects
 	{
 		public int Compare(CartoObj x, CartoObj y)
 		{
+			// tester x et y avant de les comparer
 			if (x is IPointy)
 			{
 				if (y is IPointy)

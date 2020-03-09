@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyMathLib
 {
-    public class MathUtil
+	public class MathUtil
     {
 		#region	METHODES
 		public static double Distance(double x1, double y1, double x2, double y2)

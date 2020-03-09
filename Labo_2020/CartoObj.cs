@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace MyCartographyObjects
 {
@@ -38,10 +33,7 @@ namespace MyCartographyObjects
 			Console.WriteLine(ToString());
 		}
 
-		public virtual bool IsPointClose(double latitude, double longitude, double precision)
-		{
-			return false;
-		}
+		public abstract bool IsPointClose(double latitude, double longitude, double precision);
 		#endregion
 	}
 }

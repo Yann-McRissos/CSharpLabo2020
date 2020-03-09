@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "console_app\Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathLib", "MyMathLib\MyMathLib.csproj", "{7AD811FE-8785-48AB-9851-A2041FC2C15A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalMapManager", "PersonalMapManager\PersonalMapManager.csproj", "{5698C2BD-E8BE-4733-BB9D-B575B3ACB6E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7AD811FE-8785-48AB-9851-A2041FC2C15A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AD811FE-8785-48AB-9851-A2041FC2C15A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AD811FE-8785-48AB-9851-A2041FC2C15A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5698C2BD-E8BE-4733-BB9D-B575B3ACB6E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5698C2BD-E8BE-4733-BB9D-B575B3ACB6E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5698C2BD-E8BE-4733-BB9D-B575B3ACB6E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5698C2BD-E8BE-4733-BB9D-B575B3ACB6E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MyMathLib;
 
 namespace MyCartographyObjects
 {
-	public class POI : Coordonnees, IIsPointClose
+	public class POI : Coordonnees, ICartoObj
 	{
 		private string _description;
 
@@ -33,22 +28,12 @@ namespace MyCartographyObjects
 		#endregion
 
 		#region METHODES
-		public override void Draw()
-		{
-            Console.WriteLine(string.Format("{0:00}", Id));
-        }
-
 		public override string ToString()
 		{
 			string formattedlat = string.Format("{0:N3}", this.Latitude);
 			string formattedlon = string.Format("{0:N3}", this.Longitude);
 
 			return string.Format("Id: {0:00}", Id) + " " + Description + " (" + formattedlat + ", " + formattedlon + ")";
-		}
-
-		public override bool IsPointClose(double latitude, double longitude, double precision)
-		{
-			return (MathUtil.Distance(Longitude, Latitude, longitude, latitude) <= precision);
 		}
 		#endregion
 	}

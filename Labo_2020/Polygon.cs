@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 
 
 namespace MyCartographyObjects
 {
-	public class Polygon : CartoObj, IIsPointClose, IPointy
+	public class Polygon : CartoObj, IPointy, ICartoObj
 	{
 		#region VARIABLES MEMBRES
 		private List<Coordonnees> _listCoord;
@@ -66,21 +63,16 @@ namespace MyCartographyObjects
 				return string.Format("Id Polygon:{0:00}\n", Id) + "(\n\t" + string.Join("\n\t", ListeCoord) + "\n)\nR: " + Remplissage + "\nC: " + Contour + "\nO: " + Opacite + "\n";
 		}
 
-		public override void Draw()
-		{
-			Console.WriteLine(ToString());
-		}
-
 		public override bool IsPointClose(double latitude, double longitude, double precision)
 		{
 			if(ListeCoord != null)
 			{
 				// si notre point est compris entre les points min et max, il se trouve dans la bounding box
-				double xMin = 99, xMax = 0, yMin = 99, yMax = 0;
+				double xMin = 100, xMax = -100, yMin = 100, yMax = -100;
 
 				foreach (Coordonnees c in ListeCoord)
 				{
-					xMin = 99; xMax = 0; yMin = 99; yMax = 0;
+					xMin = 100; xMax = -100; yMin = 100; yMax = -100;
 					if (c.Longitude > xMax)
 						xMax = c.Longitude;
 					if (c.Longitude < xMin)

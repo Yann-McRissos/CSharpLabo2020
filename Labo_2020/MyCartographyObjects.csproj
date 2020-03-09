@@ -7,8 +7,8 @@
     <ProjectGuid>{DBF5DAE7-A6DE-4A88-8BC7-3181F8E94F97}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Labo_2020</RootNamespace>
-    <AssemblyName>Labo_2020</AssemblyName>
+    <RootNamespace>MyCartographyObjects</RootNamespace>
+    <AssemblyName>MyCartographyObjects</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -50,9 +50,11 @@
   <ItemGroup>
     <Compile Include="CartoObj.cs" />
     <Compile Include="Coordonnees.cs" />
+    <Compile Include="ICartoObj.cs" />
     <Compile Include="IIsPointClose.cs" />
     <Compile Include="IPointy.cs" />
     <Compile Include="MyNombreCoordonnesComparer.cs" />
+    <Compile Include="MyPersonalMapData.cs" />
     <Compile Include="MyPolylineBoundingBoxComparer.cs" />
     <Compile Include="POI.cs" />
     <Compile Include="Polygon.cs" />
