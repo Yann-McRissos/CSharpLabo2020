@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MyCartographyObjects
 {
@@ -61,9 +62,10 @@ namespace MyCartographyObjects
 			{
 				if(File.Exists(filename))
 				{
-					using (BinaryReader reader = new BinaryReader(File.Open(filename, FileMode.Open)))
+					BinaryFormatter binFormat = new BinaryFormatter();
+					using (Stream fstream = File.OpenRead(filename)
 					{
-
+						_ocICartoObj = (ObservableCollection<ICartoObj>)binFormat.Deserialize(fstream);
 					}
 				}
 			}
@@ -78,25 +80,16 @@ namespace MyCartographyObjects
 		{
 			/* le filedialog s'ouvre dans l'application wpf, ici on effectue la sauvegarde du fichier à partir
 			 * du chemin donné en paramètre */
+
+			// faut serialiser
 			filename = "yannickjooris" + filename;
-			int nbOfCoords;
+
 			try
 			{
-				using (BinaryWriter writer = new BinaryWriter(File.Open(filename, FileMode.Create)))
+				BinaryFormatter binFormat = new BinaryFormatter();
+				using (Stream fStream = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None))
 				{
-					foreach (ICartoObj co in OcICartoObj)
-					{
-						if(co is POI)
-							writer.Write("POI" + co.ToString());
-						if(co is Polyline)
-						{
-							/* faut un moyen de trouver le nombre de coordonnées dans
-							 * la liste de l'objet */
-							//foreach(Coordonnees cd in co)
-							writer.Write("Polyline");
-							//writer.Write();
-						}
-					}						
+					binFormat.Serialize(fStream, OcICartoObj);
 				}			
 			}
 			catch(Exception e)
