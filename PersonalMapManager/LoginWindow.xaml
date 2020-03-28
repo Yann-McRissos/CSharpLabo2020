@@ -1,0 +1,21 @@
+﻿<Window x:Class="PersonalMapManager.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PersonalMapManager"
+        mc:Ignorable="d"
+        Title="PersonalMapManager - Login" Height="180" Width="300" ResizeMode="NoResize" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
+	<Window.Resources>
+	</Window.Resources>
+	<Grid>
+		<Label x:Name="label_Prenom" Content="Prénom" HorizontalAlignment="Left" Margin="26,15,0,0" VerticalAlignment="Top"/>
+		<TextBox x:Name="textBox_Prenom" HorizontalAlignment="Left" Height="23" Margin="105,15,0,0" Text="" VerticalAlignment="Top" Width="148" TextChanged="TextBox_Prenom_TextChanged"/>
+		<Label x:Name="label_Nom" Content="Nom" HorizontalAlignment="Left" Margin="26,45,0,0" VerticalAlignment="Top"/>
+		<TextBox x:Name="textBox_Nom" HorizontalAlignment="Left" Height="23" Margin="105,45,0,0" Text="" VerticalAlignment="Top" Width="148" TextChanged="TextBox_Nom_TextChanged"/>
+		<Label x:Name="label_Email" Content="e-mail" HorizontalAlignment="Left" Margin="26,75,0,0" VerticalAlignment="Top"/>
+		<TextBox x:Name="textBox_Email" HorizontalAlignment="Left" Height="23" Margin="105,75,0,0" Text="" VerticalAlignment="Top" Width="148" TextChanged="TextBox_Email_TextChanged"/>
+		<Button x:Name="button_Annuler" Content="Annuler" HorizontalAlignment="Left" Margin="45,112,0,0" VerticalAlignment="Top" Width="75" Click="Button_Annuler_Click"/>
+		<Button x:Name="button_Connexion" Content="Connexion" HorizontalAlignment="Left" Margin="165,112,0,0" VerticalAlignment="Top" Width="75" Click="Button_Connexion_Click" IsEnabled="False"/>
+	</Grid>
+</Window>

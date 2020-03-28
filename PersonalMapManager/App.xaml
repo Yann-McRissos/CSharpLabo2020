@@ -3,7 +3,76 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:PersonalMapManager"
              StartupUri="MainWindow.xaml">
+	<!-- Icons by Freepik on flaticon.com -->
     <Application.Resources>
-         
-    </Application.Resources>
+		<Style TargetType="{x:Type Button}">
+			<Setter Property="Foreground" Value="#FFF1F1F1"/>
+			<Setter Property="BorderBrush" Value="#FF3F3F46"/>
+			<Setter Property="Background" Value="#002C2C2C"/>
+		</Style>
+		<Style TargetType="{x:Type Button}" x:Key="TBButton">
+			<Setter Property="Foreground" Value="#FFF1F1F1"/>
+			<Setter Property="BorderBrush" Value="#FF3F3F46"/>
+			<Setter Property="Background" Value="#002C2C2C"/>
+		</Style>
+		<Style TargetType="{x:Type DockPanel}">
+			<Setter Property="Background" Value="#FF2D2D30"/>
+		</Style>
+		<Style TargetType="{x:Type Grid}">
+			<Setter Property="Background" Value="#FF2D2D30"/>
+		</Style>
+		<Style TargetType="{x:Type GridSplitter}">
+			<Setter Property="Background" Value="#FF575757"/>
+			<Setter Property="ResizeBehavior" Value="PreviousAndNext"/>
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		</Style>
+		<Style TargetType="{x:Type GroupBox}">
+			<Setter Property="BorderBrush" Value="#FF3F3F46"/>
+			<Setter Property="Foreground" Value="#FFF1F1F1"/>
+		</Style>
+		<Style TargetType="{x:Type Label}">
+			<Setter Property="Foreground" Value="#FFF1F1F1"/>
+		</Style>
+		<Style TargetType="{x:Type ListBox}">
+			<Setter Property="Background" Value="#FF1E1E1E"/>
+			<Setter Property="Foreground" Value="#FFC2C2C2"/>
+			<Setter Property="BorderBrush" Value="#FF3F3F46"/>
+		</Style>
+		<Style TargetType="{x:Type Menu}">
+			<Setter Property="Background" Value="#FF2D2D30"/>
+			<Setter Property="Foreground" Value="#FFF1F1F1"/>
+			<Setter Property="BorderBrush" Value="#FF2D2D30"/>
+		</Style>
+		<Style TargetType="{x:Type MenuItem}">
+			<Setter Property="Background" Value="#FF2D2D30"/>
+			<Setter Property="Foreground" Value="#FFF1F1F1"/>
+			<Setter Property="BorderBrush" Value="#FF2D2D30"/>
+		</Style>
+		<Style TargetType="{x:Type ScrollBar}">
+			<Setter Property="Background" Value="#FF3E3E42"/>
+			<Setter Property="Foreground" Value="#FF686868"/>
+			<Setter Property="BorderBrush" Value="#FF3E3E42"/>
+		</Style>
+		<Style TargetType="{x:Type StatusBar}">
+			<Setter Property="Background" Value="#FF2D2D30"/>
+			<Setter Property="Foreground" Value="#FFF1F1F1"/>
+			<Setter Property="BorderBrush" Value="#FF2D2D30"/>
+		</Style>
+		<Style TargetType="{x:Type TextBox}">
+			<Setter Property="SpellCheck.IsEnabled" Value="True"/>
+			<Setter Property="Language" Value="fr-BE"/>
+			<Setter Property="TextWrapping" Value="NoWrap"/>
+			<Setter Property="Background" Value="#FF1E1E1E"/>
+			<Setter Property="BorderBrush" Value="#FF3F3F46"/>
+			<Setter Property="Foreground" Value="#FFF1F1F1"/>
+		</Style>
+		<Style TargetType="{x:Type ToolBar}">
+			<Setter Property="Background" Value="#FF2D2D30"/>
+			<Setter Property="BorderBrush" Value="#FF3F3F46"/>
+			<Setter Property="Foreground" Value="#FFF1F1F1"/>
+		</Style>
+		<Style TargetType="{x:Type ToolBarTray}">
+			<Setter Property="Background" Value="#FF2D2D30"/>
+		</Style>
+	</Application.Resources>
 </Application>

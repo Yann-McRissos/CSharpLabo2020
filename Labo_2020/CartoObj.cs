@@ -2,6 +2,7 @@
 
 namespace MyCartographyObjects
 {
+	[Serializable]
 	public abstract class CartoObj : IIsPointClose
 	{
 		private int _id;				// must be automatically generated using a "static" object instance counter

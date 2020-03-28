@@ -3,61 +3,83 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:PersonalMapManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="PersonalMapData" Height="450" Width="800" MinHeight="200" MinWidth="500">
 	<Window.Resources>
-		<!-- Custom presets for WPF controls -->
-		<Style TargetType="{x:Type Grid}">
-			<Setter Property="Background" Value="#FF2D2D30"/>
-		</Style>
-		<Style TargetType="{x:Type ScrollBar}">
-			<Setter Property="Background" Value="#FF3E3E42"/>
-			<Setter Property="Foreground" Value="#FF686868"/>
-			<Setter Property="BorderBrush" Value="#FF3E3E42"/>
-		</Style>
-		<Style TargetType="{x:Type DockPanel}">
-			<Setter Property="Background" Value="#FF2D2D30"/>
-		</Style>
-		<Style TargetType="{x:Type Menu}">
-			<Setter Property="Background" Value="#FF2D2D30"/>
-			<Setter Property="Foreground" Value="#FFF1F1F1"/>
-			<Setter Property="BorderBrush" Value="#FF2D2D30"/>
-		</Style>
-		<Style TargetType="{x:Type MenuItem}">
-			<Setter Property="Background" Value="#FF2D2D30"/>
-			<Setter Property="Foreground" Value="#FFF1F1F1"/>
-			<Setter Property="BorderBrush" Value="#FF2D2D30"/>
-		</Style>
-		<Style TargetType="{x:Type StatusBar}">
-			<Setter Property="Background" Value="#FF2D2D30"/>
-			<Setter Property="Foreground" Value="#FFF1F1F1"/>
-			<Setter Property="BorderBrush" Value="#FF2D2D30"/>
-		</Style>
-		<Style TargetType="{x:Type Label}">
-			<Setter Property="Foreground" Value="#FFF1F1F1"/>
-		</Style>
-		<Style TargetType="{x:Type Button}">
-			<Setter Property="BorderBrush" Value="#FF3F3F46"/>
-			<Setter Property="Foreground" Value="#FFF1F1F1"/>
-			<Setter Property="Background" Value="#002D2D30"/>
-			<Setter Property="ToolBar.OverflowMode" Value="AsNeeded"/>
-		</Style>
-		<Style TargetType="{x:Type TextBox}">
-			<Setter Property="SpellCheck.IsEnabled" Value="True"/>
-			<Setter Property="Language" Value="fr-BE"/>
-			<Setter Property="TextWrapping" Value="NoWrap"/>
-			<Setter Property="Background" Value="#FF1E1E1E"/>
-			<Setter Property="BorderBrush" Value="#FF3F3F46"/>
-			<Setter Property="Foreground" Value="#FFF1F1F1"/>
-		</Style>
-		<Style TargetType="{x:Type ListBox}">
-			<Setter Property="Background" Value="#FF1E1E1E"/>
-			<Setter Property="Foreground" Value="#FFC2C2C2"/>
-			<Setter Property="BorderBrush" Value="#FF3F3F46"/>
-		</Style>
 	</Window.Resources>
 	<Grid>
-        
-    </Grid>
+		<!-- Row and Column Definitions necessary to resize TextBox according to Window -->
+		<Grid.RowDefinitions>
+			<RowDefinition Height="48"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<StackPanel Orientation="Vertical">
+			<Menu>
+				<MenuItem Header="_File" IsHitTestVisible="True">
+					<MenuItem x:Name="FileOpen" Header="_Open" Click="FileOpen_Click" InputGestureText="Ctrl+O"/>
+					<MenuItem x:Name="FileSave" Header="_Save" Click="FileSave_Click" InputGestureText="Ctrl+S"/>
+					<MenuItem Header="_POI" StaysOpenOnClick="True">
+						<MenuItem x:Name="POIImport" Header="Import" Click="POIImport_Click"/>
+						<MenuItem x:Name="POIExport" Header="Export" Click="POIExport_Click"/>
+					</MenuItem>
+					<MenuItem Header="_Trajet" StaysOpenOnClick="True">
+						<MenuItem x:Name="TrajetImport" Header="Import" Click="TrajetImport_Click"/>
+						<MenuItem x:Name="TrajetExport" Header="Export" Click="TrajetExport_Click"/>
+					</MenuItem>
+					<MenuItem x:Name="FileExit" Header="Exit" Click="FileExit_Click"/>
+				</MenuItem>
+				<MenuItem Header="_Tools">
+					<MenuItem x:Name="ToolsSettings" Header="Settings"/>
+					<MenuItem x:Name="ToolsAbout" Header="About" Click="ToolsAbout_Click"/>
+				</MenuItem>
+			</Menu>
+			<ToolBarTray>
+				<ToolBar Height="30">
+					<Button x:Name="button_Creer" Height="25" HorizontalAlignment="Left" Width="30">
+						<Button.Background>
+							<ImageBrush ImageSource="C:\Users\Yannick\OneDrive\Prog\Ressources\Sources\046-web-site-3.png" Stretch="Uniform"/>
+						</Button.Background>
+					</Button>
+					<Button x:Name="button_Modifier" Height="25" HorizontalAlignment="Left" Width="30">
+						<Button.Background>
+							<ImageBrush ImageSource="C:\Users\Yannick\OneDrive\Prog\Ressources\Sources\008-cogwheels-2.png" Stretch="Uniform"/>
+						</Button.Background>
+					</Button>
+					<Button x:Name="button_Supprimer" Height="25" HorizontalAlignment="Left" Width="30">
+						<Button.Background>
+							<ImageBrush ImageSource="C:\Users\Yannick\OneDrive\Prog\Ressources\Sources\075-cancel.png" Stretch="Uniform"/>
+						</Button.Background>
+					</Button>
+				</ToolBar>
+			</ToolBarTray>
+		</StackPanel>
+		<Grid Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" MinWidth="200"/>
+				<ColumnDefinition Width="4"/>
+				<ColumnDefinition Width="2*" MinWidth="300"/>
+			</Grid.ColumnDefinitions>
+			<GridSplitter Grid.Column="1" Width="4" ResizeDirection="Columns"/>
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*" MinHeight="60"/>
+					<RowDefinition Height="4"/>
+					<RowDefinition Height="*" MinHeight="130"/>
+				</Grid.RowDefinitions>
+				<ListBox x:Name="lb_objects"/>
+				<GridSplitter Grid.Row="1" Height="4" ResizeDirection="Rows"/>
+				<Label Grid.Row="2" Content="Description:" Margin="10,5,0,0"/>
+				<TextBox x:Name="tb_Description" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="85,6,0,0" Height="25" Width="160"/>
+				<GroupBox Grid.Row="2" Margin="0,35,0,30">
+					
+				</GroupBox>
+			</Grid>
+		</Grid>
+		<!--<xctk:ColorPicker Name="Colorpicker" Grid.Row="1" Background="#FF272727"></xctk:ColorPicker> -->
+	</Grid>
 </Window>

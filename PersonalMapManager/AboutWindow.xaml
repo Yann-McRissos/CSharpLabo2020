@@ -1,0 +1,16 @@
+﻿<Window x:Class="PersonalMapManager.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PersonalMapManager"
+        mc:Ignorable="d"
+        Title="About" Height="160" Width="400" ResizeMode="NoResize" WindowStyle="ToolWindow"  WindowStartupLocation="CenterOwner">
+	<Grid>
+		<Label x:Name="label_author" Content="Auteur : Yannick Jooris" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" />
+		<Label x:Name="label_copyright" Content="Copyright : Aucun, logiciel libre" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+		<Label x:Name="label_date" Content="Date : " HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top"/>
+		<Label x:Name="label_Licenses" Content="Licenses : Icons designed by Freepik from Flaticon" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+		<Image x:Name="image" HorizontalAlignment="Left" Height="112" Margin="207,10,0,0" VerticalAlignment="Top" Width="162" Source="C:\Users\Yannick\Pictures\HEPL_logo.png"/>
+	</Grid>
+</Window>

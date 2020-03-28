@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MyCartographyObjects;
 using System.Windows.Media;
+using System.Collections.ObjectModel;
 
 namespace console_app
 {
@@ -54,6 +55,21 @@ namespace console_app
 			Polyline pl5 = new Polyline(listCD5, Colors.Green, 9);
 
 			List<Polyline> listePL = new List<Polyline>() { pl1, pl2, pl3, pl4, pl5 };
+
+			MyPersonalMapData mdataDef = new MyPersonalMapData();
+			mdataDef.OcICartoObj.Add(poiDef); // plante
+			mdataDef.OcICartoObj.Add(pgDef);
+			mdataDef.OcICartoObj.Add(plDef);
+
+			ObservableCollection<ICartoObj> OCtest = new ObservableCollection<ICartoObj>();
+			{
+				OCtest.Add(poi);
+				OCtest.Add(pg);
+				OCtest.Add(pl2);
+			}
+			MyPersonalMapData mdata = new MyPersonalMapData("Jooris", "Yannick", "yannick.jooris@student.hepl.be", OCtest);
+			mdata.OcICartoObj.Add(pgDef);
+
 			#endregion
 
 			#region TESTS
@@ -181,6 +197,23 @@ namespace console_app
 							Console.WriteLine(co.ToString() + "\n");
 						#endregion
 						break;
+					case ConsoleKey.D6:
+						#region TEST 06
+						Console.WriteLine("Test d'objets MyPersonalMapData et de leurs méthodes");
+						Console.WriteLine(mdataDef.ToString() + "\n");
+						Console.WriteLine(mdata.ToString());
+						Console.ReadKey();
+						Console.Clear();
+						Console.WriteLine("Test BinaryFormatter (save)");
+						mdata.Save("mapdata.dat");
+						Console.ReadKey();
+						Console.WriteLine("Test BinaryFormatter (load)");
+						MyPersonalMapData fromfile = new MyPersonalMapData();
+						fromfile.Load("mapdata.dat");
+						Console.WriteLine(fromfile.ToString());
+						Console.ReadKey();
+						#endregion
+						break;
 					case ConsoleKey.Escape:
 						exit = true;
 						break;
@@ -197,6 +230,7 @@ namespace console_app
 			Console.WriteLine("3) Liste générique de 5 objets Polyline");
 			Console.WriteLine("4) Comparaison des objets de List<Polyline>");
 			Console.WriteLine("5) Tri de List<CartoObjs> selon le nb de Coord");
+			Console.WriteLine("6) Objets MyPersonalMapData + BinaryFormatter");
 			Console.WriteLine("Esc) Quitter");
 		}
 	}

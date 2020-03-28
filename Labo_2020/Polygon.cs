@@ -5,12 +5,15 @@ using System.Windows.Media;
 
 namespace MyCartographyObjects
 {
+	[Serializable]
 	public class Polygon : CartoObj, IPointy, ICartoObj
 	{
 		#region VARIABLES MEMBRES
 		private List<Coordonnees> _listCoord;
-		private Color Remplissage { get; set; }
-		private Color Contour { get; set; }
+		//[NonSerialized]
+		public Color Remplissage { get; set; }
+		//[NonSerialized]
+		public Color Contour { get; set; }
 		private double _opacite;
 		#endregion
 

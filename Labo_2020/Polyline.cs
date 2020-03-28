@@ -5,12 +5,14 @@ using MyMathLib;
 
 namespace MyCartographyObjects
 {
+	[Serializable]
 	public class Polyline : CartoObj, IPointy, IComparable<Polyline>, IEquatable<Polyline>, ICartoObj
 	{
 		#region VARIABLES MEMBRES
 		private List<Coordonnees> _listCoord;
-        private Color Couleur { get; set; }
-        private int Epaisseur { get; set; }
+		//[NonSerialized]
+        public Color Couleur { get; set; }
+        public int Epaisseur { get; set; }
         #endregion
 
         #region PROPRIETES
@@ -29,12 +31,24 @@ namespace MyCartographyObjects
             Epaisseur = 0;
         }
 
-        public Polyline(List<Coordonnees> liste, Color cl, int ep) : base()
+		// le 2e constructeur appellera le 3e
+        public Polyline(List<Coordonnees> liste, Color cl, int ep) : base() // this(3 paramètres + le dernier initialisé par défaut)
         {
 			ListeCoord = liste;
             Couleur = cl;
             Epaisseur = ep;
+		}
+
+		// constructeur qui prend une descrption en plus
+		/*
+		public Polyline(List<Coordonnees> liste, Color cl, int ep, string description) : base()
+        {
+			ListeCoord = liste;
+            Couleur = cl;
+            Epaisseur = ep;
+			Description = description
         }
+		*/
         #endregion
 
         #region METHODES

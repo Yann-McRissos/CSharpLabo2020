@@ -1,0 +1,60 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PersonalMapManager">
+	<!-- Custom presets for WPF controls -->
+	<Style TargetType="{x:Type Button}" x:Key="Buttonstyle">
+		<Setter Property="Foreground" Value="#FFF1F1F1"/>
+		<Setter Property="BorderBrush" Value="#FF3F3F46"/>
+		<Setter Property="Background" Value="#002D2D30"/>
+	</Style>
+	<Style TargetType="{x:Type DockPanel}" x:Key="Dockpanelstyle">
+		<Setter Property="Background" Value="#FF2D2D30"/>
+	</Style>
+	<Style TargetType="{x:Type Grid}" x:Key="Gridstyle">
+		<Setter Property="Background" Value="#FF2D2D30"/>
+	</Style>
+	<Style TargetType="{x:Type Label}" x:Key="Labelstyle">
+		<Setter Property="Foreground" Value="#FFF1F1F1"/>
+	</Style>
+	<Style TargetType="{x:Type ListBox}" x:Key="Listboxstyle">
+		<Setter Property="Background" Value="#FF1E1E1E"/>
+		<Setter Property="Foreground" Value="#FFC2C2C2"/>
+		<Setter Property="BorderBrush" Value="#FF3F3F46"/>
+	</Style>
+	<Style TargetType="{x:Type Menu}" x:Key="Menustyle">
+		<Setter Property="Background" Value="#FF2D2D30"/>
+		<Setter Property="Foreground" Value="#FFF1F1F1"/>
+		<Setter Property="BorderBrush" Value="#FF2D2D30"/>
+	</Style>
+	<Style TargetType="{x:Type MenuItem}" x:Key="Menuitemstyle">
+		<Setter Property="Background" Value="#FF2D2D30"/>
+		<Setter Property="Foreground" Value="#FFF1F1F1"/>
+		<Setter Property="BorderBrush" Value="#FF2D2D30"/>
+	</Style>
+	<Style TargetType="{x:Type ScrollBar}" x:Key="Scrollbarstyle">
+		<Setter Property="Background" Value="#FF3E3E42"/>
+		<Setter Property="Foreground" Value="#FF686868"/>
+		<Setter Property="BorderBrush" Value="#FF3E3E42"/>
+	</Style>
+	<Style TargetType="{x:Type StatusBar}" x:Key="Statusbarstyle">
+		<Setter Property="Background" Value="#FF2D2D30"/>
+		<Setter Property="Foreground" Value="#FFF1F1F1"/>
+		<Setter Property="BorderBrush" Value="#FF2D2D30"/>
+	</Style>
+	<Style TargetType="{x:Type TextBox}" x:Key="Textboxstyle">
+		<Setter Property="SpellCheck.IsEnabled" Value="True"/>
+		<Setter Property="Language" Value="fr-BE"/>
+		<Setter Property="TextWrapping" Value="NoWrap"/>
+		<Setter Property="Background" Value="#FF1E1E1E"/>
+		<Setter Property="BorderBrush" Value="#FF3F3F46"/>
+		<Setter Property="Foreground" Value="#FFF1F1F1"/>
+	</Style>
+	<Style TargetType="{x:Type ToolBar}" x:Key="Toolbarstyle">
+		<Setter Property="Background" Value="#FF2D2D30"/>
+		<Setter Property="BorderBrush" Value="#FF3F3F46"/>
+		<Setter Property="Foreground" Value="#FFF1F1F1"/>
+	</Style>
+	<Style TargetType="{x:Type ToolBarTray}" x:Key="Toolbartraystyle">
+		<Setter Property="Background" Value="#FF2D2D30"/>
+	</Style>
+</ResourceDictionary>

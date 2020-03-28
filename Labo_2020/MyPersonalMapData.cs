@@ -5,20 +5,14 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MyCartographyObjects
 {
+	[Serializable]
 	public class MyPersonalMapData
 	{
 		#region VARIABLES MEMBRES
 		public string Nom { get; set; }
 		public string Prenom { get; set; }
 		public string Mail { get; set; }
-		private ObservableCollection<ICartoObj> _ocICartoObj;
-		#endregion
-
-		#region PROPRIETES
-		public ObservableCollection<ICartoObj> OcICartoObj
-		{
-			get { return _ocICartoObj; }
-		}
+		public ObservableCollection<ICartoObj> OcICartoObj { get; set; }
 		#endregion
 
 		#region CONSTRUCTEURS
@@ -27,7 +21,7 @@ namespace MyCartographyObjects
 			Nom = "Nom";
 			Prenom = "Prenom";
 			Mail = "nom.prenom@hepl.be";
-			new ObservableCollection<ICartoObj>();
+			OcICartoObj = new ObservableCollection<ICartoObj>();
 		}
 
 		public MyPersonalMapData(string nom, string prenom, string mail, ObservableCollection<ICartoObj> ocICartoObj) : this()
@@ -35,6 +29,7 @@ namespace MyCartographyObjects
 			Nom = nom;
 			Prenom = prenom;
 			Mail = mail;
+			OcICartoObj = ocICartoObj;
 		}
 		#endregion
 
@@ -46,7 +41,7 @@ namespace MyCartographyObjects
 			foreach (ICartoObj co in _ocICartoObj)
 				Console.WriteLine(co.ToString());
 			*/
-			_ocICartoObj.Clear();
+			OcICartoObj.Clear();
 			/*
 			Console.WriteLine("Après reset: ");
 			foreach (ICartoObj co in _ocICartoObj)
@@ -58,14 +53,16 @@ namespace MyCartographyObjects
 		{
 			/* le filedialog s'ouvre dans l'application wpf, ici on effectue le chargement du fichier à partir
 			 * du chemin donné en paramètre */
+
+			filename = @"C:\Users\Yannick\OneDrive\Prog\yannickjooris" + filename;
 			try
 			{
 				if(File.Exists(filename))
 				{
 					BinaryFormatter binFormat = new BinaryFormatter();
-					using (Stream fstream = File.OpenRead(filename)
+					using (Stream fstream = File.OpenRead(filename))
 					{
-						_ocICartoObj = (ObservableCollection<ICartoObj>)binFormat.Deserialize(fstream);
+						OcICartoObj = (ObservableCollection<ICartoObj>)binFormat.Deserialize(fstream);
 					}
 				}
 			}
@@ -80,9 +77,7 @@ namespace MyCartographyObjects
 		{
 			/* le filedialog s'ouvre dans l'application wpf, ici on effectue la sauvegarde du fichier à partir
 			 * du chemin donné en paramètre */
-
-			// faut serialiser
-			filename = "yannickjooris" + filename;
+			filename = @"C:\Users\Yannick\OneDrive\Prog\yannickjooris" + filename;
 
 			try
 			{
@@ -98,6 +93,16 @@ namespace MyCartographyObjects
 			}
 			// Object is disposed of indirectly using the "using" language construct
 		}
+
+		public override string ToString()
+		{
+			if (OcICartoObj != null)
+				return Nom + "\n" + Prenom + "\n" + Mail + "\n" + string.Join("\n\t", OcICartoObj);
+			else
+				return Nom + "\n" + Prenom + "\n" + Mail;
+		}
+
+
 		#endregion
 	}
 }
