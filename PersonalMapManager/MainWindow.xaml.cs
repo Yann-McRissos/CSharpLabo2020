@@ -162,5 +162,101 @@ namespace PersonalMapManager
 			AboutWindow aw = new AboutWindow();
 			aw.Show();
 		}
+
+		private void Tb_Description_GotFocus(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				if (tb_Description.Text == "Description" && tb_Description.Foreground == Brushes.Gray)
+				{
+					tb_Description.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFF1F1F1"));
+					tb_Description.Text = "";
+				}
+			}
+			catch(Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
+
+		private void Tb_Description_LostFocus(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				if(tb_Description.Text == "")
+				{
+					tb_Description.Foreground = Brushes.Gray;
+					tb_Description.Text = "Description";
+				}
+			}
+			catch(Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
+
+		private void Tb_Latitude_GotFocus(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				if (tb_Latitude.Text == "Latitude (Y)" && tb_Latitude.Foreground == Brushes.Gray)
+				{
+					tb_Latitude.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFF1F1F1"));
+					tb_Latitude.Text = "";
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
+
+		private void Tb_Latitude_LostFocus(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				if (tb_Latitude.Text == "")
+				{
+					tb_Latitude.Foreground = Brushes.Gray;
+					tb_Latitude.Text = "Latitude (Y)";
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
+
+		private void Tb_Longitude_GotFocus(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				if (tb_Longitude.Text == "Longitude (X)" && tb_Longitude.Foreground == Brushes.Gray)
+				{
+					tb_Longitude.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFF1F1F1"));
+					tb_Longitude.Text = "";
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
+
+		private void Tb_Longitude_LostFocus(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				if (tb_Longitude.Text == "")
+				{
+					tb_Longitude.Foreground = Brushes.Gray;
+					tb_Longitude.Text = "Longitude (X)";
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
 	}
 }

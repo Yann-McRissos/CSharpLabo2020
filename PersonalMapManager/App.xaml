@@ -10,11 +10,6 @@
 			<Setter Property="BorderBrush" Value="#FF3F3F46"/>
 			<Setter Property="Background" Value="#002C2C2C"/>
 		</Style>
-		<Style TargetType="{x:Type Button}" x:Key="TBButton">
-			<Setter Property="Foreground" Value="#FFF1F1F1"/>
-			<Setter Property="BorderBrush" Value="#FF3F3F46"/>
-			<Setter Property="Background" Value="#002C2C2C"/>
-		</Style>
 		<Style TargetType="{x:Type DockPanel}">
 			<Setter Property="Background" Value="#FF2D2D30"/>
 		</Style>
@@ -58,6 +53,16 @@
 			<Setter Property="Foreground" Value="#FFF1F1F1"/>
 			<Setter Property="BorderBrush" Value="#FF2D2D30"/>
 		</Style>
+		<Style TargetType="{x:Type TabControl}">
+			<Setter Property="Background" Value="#FF2D2D30"/>
+			<Setter Property="Foreground" Value="#FFF1F1F1"/>
+			<Setter Property="BorderBrush" Value="#FF3E3E42"/>
+		</Style>
+		<Style TargetType="{x:Type TabItem}">
+			<Setter Property="Background" Value="#FF2D2D30"/>
+			<Setter Property="Foreground" Value="#FFF1F1F1"/>
+			<Setter Property="BorderBrush" Value="#FF3E3E42"/>
+		</Style>
 		<Style TargetType="{x:Type TextBox}">
 			<Setter Property="SpellCheck.IsEnabled" Value="True"/>
 			<Setter Property="Language" Value="fr-BE"/>
@@ -65,6 +70,17 @@
 			<Setter Property="Background" Value="#FF1E1E1E"/>
 			<Setter Property="BorderBrush" Value="#FF3F3F46"/>
 			<Setter Property="Foreground" Value="#FFF1F1F1"/>
+		</Style>
+		<Style TargetType="{x:Type TextBox}" x:Key="TB_nolabel">
+			<Setter Property="SpellCheck.IsEnabled" Value="True"/>
+			<Setter Property="Language" Value="fr-BE"/>
+			<Setter Property="TextWrapping" Value="NoWrap"/>
+			<Setter Property="Background" Value="#FF1E1E1E"/>
+			<Setter Property="BorderBrush" Value="#FF3F3F46"/>
+			<Setter Property="Foreground" Value="Gray"/>
+			<Setter Property="Height" Value="20"/>
+			<Setter Property="VerticalAlignment" Value="Top"/>
+			<Setter Property="HorizontalAlignment" Value="Left"/>
 		</Style>
 		<Style TargetType="{x:Type ToolBar}">
 			<Setter Property="Background" Value="#FF2D2D30"/>
