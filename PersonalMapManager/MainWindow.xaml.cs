@@ -3,6 +3,7 @@ using System.Windows;
 using Microsoft.Win32;
 using System.IO;
 using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace PersonalMapManager
 {
@@ -20,7 +21,6 @@ namespace PersonalMapManager
 
 		public MainWindow() : this("", "", "")
 		{
-
 		}
 
 		private void FileOpen_Click(object sender, RoutedEventArgs e)
@@ -251,6 +251,38 @@ namespace PersonalMapManager
 				{
 					tb_Longitude.Foreground = Brushes.Gray;
 					tb_Longitude.Text = "Longitude (X)";
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
+
+		private void Tb_plEpaisseur_GotFocus(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				if (tb_plEpaisseur.Text == "Epaisseur" && tb_plEpaisseur.Foreground == Brushes.Gray)
+				{
+					tb_plEpaisseur.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFF1F1F1"));
+					tb_plEpaisseur.Text = "";
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
+
+		private void Tb_plEpaisseur_LostFocus(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				if (tb_plEpaisseur.Text == "")
+				{
+					tb_plEpaisseur.Foreground = Brushes.Gray;
+					tb_plEpaisseur.Text = "Epaisseur";
 				}
 			}
 			catch (Exception ex)

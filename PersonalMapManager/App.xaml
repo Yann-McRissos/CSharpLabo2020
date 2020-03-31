@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:PersonalMapManager"
              StartupUri="MainWindow.xaml">
 	<!-- Icons by Freepik on flaticon.com -->
-    <Application.Resources>
+	<Application.Resources>
 		<Style TargetType="{x:Type Button}">
 			<Setter Property="Foreground" Value="#FFF1F1F1"/>
 			<Setter Property="BorderBrush" Value="#FF3F3F46"/>
@@ -13,7 +13,7 @@
 		<Style TargetType="{x:Type DockPanel}">
 			<Setter Property="Background" Value="#FF2D2D30"/>
 		</Style>
-		<Style TargetType="{x:Type Grid}">
+		<Style TargetType="{x:Type Grid}" x:Key="GridDark">
 			<Setter Property="Background" Value="#FF2D2D30"/>
 		</Style>
 		<Style TargetType="{x:Type GridSplitter}">
@@ -81,6 +81,8 @@
 			<Setter Property="Height" Value="20"/>
 			<Setter Property="VerticalAlignment" Value="Top"/>
 			<Setter Property="HorizontalAlignment" Value="Left"/>
+			<Setter Property="TextWrapping" Value="NoWrap"/>
+			<Setter Property="AcceptsReturn" Value="False"/>
 		</Style>
 		<Style TargetType="{x:Type ToolBar}">
 			<Setter Property="Background" Value="#FF2D2D30"/>
