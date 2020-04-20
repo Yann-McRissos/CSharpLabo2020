@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace MyCartographyObjects
 {
@@ -6,16 +7,27 @@ namespace MyCartographyObjects
 	public class POI : Coordonnees, ICartoObj
 	{
 		private string _description;
+		[field: NonSerialized]
+		public event PropertyChangedEventHandler PropertyChanged;
 
 		#region PROPRIETES
 		public string Description
 		{
 			get { return _description; }
-			set { _description = value; }
+			set
+			{
+				_description = value;
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Description"));
+			}
 		}
 		#endregion
 
 		#region CONSTRUCTEURS
+		public POI(string description, Coordonnees cd) : this(cd.Latitude, cd.Longitude, description)
+		{
+
+		}
+
 		public POI(double lat, double lon, string desc)
 		{
 			Latitude = lat;
@@ -34,7 +46,7 @@ namespace MyCartographyObjects
 			string formattedlat = string.Format("{0:N3}", this.Latitude);
 			string formattedlon = string.Format("{0:N3}", this.Longitude);
 
-			return string.Format("Id: {0:00}", Id) + " " + Description + " (" + formattedlat + ", " + formattedlon + ")";
+			return (Description + " (" + formattedlat + ", " + formattedlon + ")");
 		}
 		#endregion
 	}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Media;
 using MyMathLib;
 
@@ -10,16 +11,56 @@ namespace MyCartographyObjects
 	{
 		#region VARIABLES MEMBRES
 		private List<Coordonnees> _listCoord;
-		//[NonSerialized]
-        public Color Couleur { get; set; }
-        public int Epaisseur { get; set; }
-        #endregion
+		[NonSerialized]
+		private Color _couleur;
+		private string _codeCouleur;
+		public int Epaisseur { get; set; }
+		private string _description;
+		#endregion
+		[field: NonSerialized]
+		public event PropertyChangedEventHandler PropertyChanged;
 
-        #region PROPRIETES
-        public List<Coordonnees> ListeCoord
+		#region PROPRIETES
+		public string Description
+		{
+			get { return _description; }
+			set
+			{
+				_description = value;
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Description"));
+			}
+		}
+
+		public List<Coordonnees> ListeCoord
 		{
 			get { return _listCoord; }
-			set { _listCoord = value; }
+			set
+			{
+				_listCoord = value;
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ListeCoord"));
+			}
+		}
+
+		public Color Couleur
+		{
+			get { return _couleur; }
+			set
+			{
+				_couleur = value;
+				if(CodeCouleur != Couleur.ToString())
+					CodeCouleur = Couleur.ToString();
+			}
+		}
+
+		public string CodeCouleur
+		{
+			get { return _codeCouleur; }
+			set
+			{
+				_codeCouleur = value;
+				if (Couleur.ToString() != CodeCouleur)
+					Couleur = (Color)ColorConverter.ConvertFromString(CodeCouleur);
+			}
 		}
 		#endregion
 
@@ -31,33 +72,40 @@ namespace MyCartographyObjects
             Epaisseur = 0;
         }
 
+		public Polyline(Color cl, int ep) : this("", cl, ep)
+		{
+		}
+
+		public Polyline(string description, Color cl, int ep) : base()
+		{
+			ListeCoord = null;
+			Couleur = cl;
+			Epaisseur = ep;
+			Description = description;
+		}
+
 		// le 2e constructeur appellera le 3e
-        public Polyline(List<Coordonnees> liste, Color cl, int ep) : base() // this(3 paramètres + le dernier initialisé par défaut)
+		public Polyline(List<Coordonnees> liste, Color cl, int ep) : this("", cl, ep, liste)
         {
-			ListeCoord = liste;
-            Couleur = cl;
-            Epaisseur = ep;
 		}
 
 		// constructeur qui prend une descrption en plus
-		/*
-		public Polyline(List<Coordonnees> liste, Color cl, int ep, string description) : base()
+		public Polyline(string description, Color cl, int ep, List<Coordonnees> liste) : base()
         {
 			ListeCoord = liste;
             Couleur = cl;
             Epaisseur = ep;
-			Description = description
+			Description = description;
         }
-		*/
-        #endregion
+		#endregion
 
-        #region METHODES
-        public override string ToString()
+		#region METHODES
+		public override string ToString()
         {
 			if(ListeCoord == null)
-				return string.Format("Id Polyline: {0:00}", Id) + "\nC: " + Couleur + "\nE: " + Epaisseur + "\n";
+				return string.Format("[{0:00}] Polyline ", Id) + Description + "\nCouleur: " + Couleur + "(" + CodeCouleur +")" + "\tEpaisseur: " + Epaisseur;
 			else
-				return string.Format("Id Polyline: {0:00}\n", Id) + "(\n\t" + string.Join("\n\t", ListeCoord) + "\n)\nC: " + Couleur + "\nE: " + Epaisseur + "\n";
+				return string.Format("[{0:00}] Polyline ", Id) + Description + "\n(\n\t" + string.Join("\n\t", ListeCoord) + "\n)\nCouleur: " + Couleur + "(" + CodeCouleur + ")" + "\tEpaisseur: " + Epaisseur;
         }
 
 		public override bool IsPointClose(double latitude, double longitude, double precision)

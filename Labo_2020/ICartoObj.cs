@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace MyCartographyObjects
 {
-	public interface ICartoObj
+	public interface ICartoObj : INotifyPropertyChanged
 	{
 
 	}

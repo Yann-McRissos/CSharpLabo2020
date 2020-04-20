@@ -46,6 +46,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CartoObj.cs" />
@@ -53,7 +54,7 @@
     <Compile Include="ICartoObj.cs" />
     <Compile Include="IIsPointClose.cs" />
     <Compile Include="IPointy.cs" />
-    <Compile Include="MyNombreCoordonnesComparer.cs" />
+    <Compile Include="MyNombreCoordonneesComparer.cs" />
     <Compile Include="MyPersonalMapData.cs" />
     <Compile Include="MyPolylineBoundingBoxComparer.cs" />
     <Compile Include="POI.cs" />

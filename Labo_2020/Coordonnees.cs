@@ -1,28 +1,43 @@
 ﻿using System;
+using System.ComponentModel;
 using MyMathLib;
 
 namespace MyCartographyObjects
 {
 	[Serializable]
-	public class Coordonnees : CartoObj
+	public class Coordonnees : CartoObj, INotifyPropertyChanged
     {
         #region VARIABLES MEMBRES
         private double _latitude;	// Y
-        private double _longitude;	// X
-        #endregion
+        private double _longitude;  // X
+		#endregion
+		[field: NonSerialized]
+		public event PropertyChangedEventHandler PropertyChanged;
 
-        #region PROPRIETES
-        public double Latitude
+		#region PROPRIETES
+
+		public double Latitude
         {
             get { return _latitude; }
-            set { _latitude = value; }
+            set
+			{
+				_latitude = value;
+				if(PropertyChanged != null)
+				{
+					PropertyChanged(this, new PropertyChangedEventArgs("Latitude"));
+				}
+			}
         }
 
         public double Longitude
         {
             get { return _longitude; }
-            set { _longitude = value; }
-        }
+			set
+			{
+				_longitude = value;
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Longitude"));
+			}
+		}
         #endregion
 
         #region CONSTRUCTEURS
@@ -43,7 +58,7 @@ namespace MyCartographyObjects
 		#region METHODES
 		public override string ToString()
         {
-			return string.Format("Id: {0:00}", Id) + " (" + Latitude + ", " + Longitude + ")";
+			return string.Format("[{0:00}]", Id) + " (" + Latitude + ", " + Longitude + ")";
         }
 
 		public override bool IsPointClose(double latitude, double longitude, double precision)

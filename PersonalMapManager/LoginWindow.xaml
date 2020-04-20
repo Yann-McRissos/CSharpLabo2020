@@ -8,7 +8,7 @@
         Title="PersonalMapManager - Login" Height="180" Width="300" ResizeMode="NoResize" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
 	<Window.Resources>
 	</Window.Resources>
-	<Grid>
+	<Grid Style="{StaticResource GridDark}">
 		<Label x:Name="label_Prenom" Content="Prénom" HorizontalAlignment="Left" Margin="26,15,0,0" VerticalAlignment="Top"/>
 		<TextBox x:Name="textBox_Prenom" HorizontalAlignment="Left" Height="23" Margin="105,15,0,0" Text="" VerticalAlignment="Top" Width="148" TextChanged="TextBox_Prenom_TextChanged"/>
 		<Label x:Name="label_Nom" Content="Nom" HorizontalAlignment="Left" Margin="26,45,0,0" VerticalAlignment="Top"/>

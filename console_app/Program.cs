@@ -25,7 +25,7 @@ namespace console_app
 			Polyline pl = new Polyline(maliste, Color.FromRgb(255, 0, 0), 17);
 			Polyline plDef = new Polyline();
 
-			Polygon pg = new Polygon(maliste, Colors.Red, Colors.Blue, 0);
+			Polygon pg = new Polygon("", Colors.Red, Colors.Blue, 0, maliste);
 			Polygon pgDef = new Polygon();
 
 			List<CartoObj> listeCO = new List<CartoObj>() { c, cDef, poi, poiDef, pl, plDef, pg, pgDef };
@@ -61,14 +61,17 @@ namespace console_app
 			mdataDef.OcICartoObj.Add(pgDef);
 			mdataDef.OcICartoObj.Add(plDef);
 
+			Polygon prout = new Polygon("", Colors.RosyBrown, Colors.Teal, 15, listCD4);
 			ObservableCollection<ICartoObj> OCtest = new ObservableCollection<ICartoObj>();
 			{
-				OCtest.Add(poi);
-				OCtest.Add(pg);
+				OCtest.Add(prout);
 				OCtest.Add(pl2);
+				OCtest.Add(poiDef);
 			}
 			MyPersonalMapData mdata = new MyPersonalMapData("Jooris", "Yannick", "yannick.jooris@student.hepl.be", OCtest);
-			mdata.OcICartoObj.Add(pgDef);
+			// test depuis le 15/04
+			Polyline pl10 = new Polyline(Colors.White, 10);
+			Polyline pl11 = new Polyline(Colors.Blue, 11);
 
 			#endregion
 
@@ -116,7 +119,7 @@ namespace console_app
 
 						foreach (CartoObj co in listeCO)
 						{
-							Console.WriteLine(co.ToString() + "\n");
+							co.Draw();
 						}
 						Console.ReadKey();
 						Console.Clear();
@@ -191,7 +194,7 @@ namespace console_app
 							Console.WriteLine(co.ToString() + "\n");
 						Console.ReadKey();
 						Console.Clear();
-						MyNombreCoordonnesComparer ncComparer = new MyNombreCoordonnesComparer();
+						MyNombreCoordonneesComparer ncComparer = new MyNombreCoordonneesComparer();
 						listeCO.Sort(ncComparer);
 						foreach (CartoObj co in listeCO)
 							Console.WriteLine(co.ToString() + "\n");
@@ -203,14 +206,30 @@ namespace console_app
 						Console.WriteLine(mdataDef.ToString() + "\n");
 						Console.WriteLine(mdata.ToString());
 						Console.ReadKey();
-						Console.Clear();
+						//Console.Clear();
 						Console.WriteLine("Test BinaryFormatter (save)");
-						mdata.Save("mapdata.dat");
+						Console.WriteLine("Saving...");
+						mdata.Save(@"C:\Users\Yannick\OneDrive\Prog\mapdata.dat");
+						Console.WriteLine("Done!");
 						Console.ReadKey();
+						//Console.Clear();
 						Console.WriteLine("Test BinaryFormatter (load)");
-						MyPersonalMapData fromfile = new MyPersonalMapData();
-						fromfile.Load("mapdata.dat");
+						MyPersonalMapData fromfile = new MyPersonalMapData("Jooris", "Yannick", "3");
+						Console.WriteLine("Loading...");
+						fromfile.Load(@"C:\Users\Yannick\OneDrive\Prog\mapdata.dat");
+						Console.WriteLine("Done!");
 						Console.WriteLine(fromfile.ToString());
+						Console.ReadKey();
+						#endregion
+						break;
+					case ConsoleKey.D7:
+						#region TEST 07
+						Console.WriteLine("Resultat CompareTo: " + pl10.CompareTo(pl11));
+						Console.ReadKey();
+						#endregion
+						break;
+					case ConsoleKey.D8:
+						#region TEST 08
 						Console.ReadKey();
 						#endregion
 						break;

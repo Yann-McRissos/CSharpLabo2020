@@ -26,12 +26,12 @@ namespace MyCartographyObjects
 		#region METHODES
 		public override string ToString()
 		{
-			return string.Format("{0:00}", Id);
+			return string.Format("[{0:00}]", Id);
         }
 
 		public virtual void Draw()
 		{
-			Console.WriteLine(ToString());
+			Console.WriteLine(ToString() + "\n");
 		}
 
 		public abstract bool IsPointClose(double latitude, double longitude, double precision);

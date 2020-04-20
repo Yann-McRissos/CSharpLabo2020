@@ -1,0 +1,21 @@
+﻿<Window x:Class="PersonalMapManager.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PersonalMapManager"
+		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="PersonalMapManager - Settings" Height="180" Width="350" ResizeMode="NoResize" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
+	<Grid Style="{StaticResource GridDark}">
+		<Button x:Name="button_Dir" Content="..." HorizontalAlignment="Left" Margin="280,24,0,0" VerticalAlignment="Top" Width="31" Height="23" Click="ButtonDir_Click"/>
+		<TextBox x:Name="tb_directory" Text="Chose directory to work with" Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Margin="27,24,0,0" Width="248" TextChanged="Tb_directory_TextChanged"/>
+		<Label Content="List color: Text" HorizontalAlignment="Left" Margin="22,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.526"/>
+		<xctk:ColorPicker x:Name="cp_lbColorText" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="117,58,0,0" Height="20" Width="50" Background="White" DropDownBackground="#FF252526" HeaderBackground="#FF292929" TabBackground="#FF292929" HeaderForeground="#FFF1F1F1" TabForeground="#FFF1F1F1"/>
+		<Label Content="Background" HorizontalAlignment="Left" Margin="186,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.526"/>
+		<xctk:ColorPicker x:Name="cp_lbColorBackground" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="261,58,0,0" Height="20" Width="50" Background="#FF252525" DropDownBackground="#FF252526" HeaderBackground="#FF292929" TabBackground="#FF292929" HeaderForeground="#FFF1F1F1" TabForeground="#FFF1F1F1"/>
+		<Button x:Name="bt_Ok" Content="_OK" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="27,102,0,0" Width="80" Height="22" Click="Bt_Ok_Click"/>
+		<Button x:Name="bt_Cancel" Content="_Cancel" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="130,102,0,0" Width="80" Height="22" Click="Bt_Cancel_Click"/>
+		<Button x:Name="bt_Apply" Content="_Apply" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="231,102,0,0"  Width="80" Height="22" Click="Bt_Apply_Click"/>
+	</Grid>
+</Window>
